@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Studie-budget assistent</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <script defer src="js/main.js"></script>
+</head>
+
+<body>
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h2 class="mb-1">💸 Studie-budget assistent 💸</h2>
+      <p class="text-muted mb-0">
+        Indtast din økonomi, så giver AI’en forslag til et realistisk budget og konkrete spare-tips.
+      </p>
+    </div>
+    <a href="admin.html" class="btn btn-outline-secondary">Admin</a>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <form id="form-budget">
+        <div class="mb-3">
+          <label for="income" class="form-label">Månedlig indkomst (SU, job osv.)</label>
+          <input type="number" min="0" class="form-control" id="income" placeholder="fx 9000" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="rent" class="form-label">Husleje</label>
+          <input type="number" min="0" class="form-control" id="rent" placeholder="fx 4500" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="fixed" class="form-label">Øvrige faste udgifter</label>
+          <input type="number" min="0" class="form-control" id="fixed"
+                 placeholder="abonnementer, transport osv." required>
+        </div>
+
+        <div class="mb-3">
+          <label for="savings" class="form-label">Ønsket opsparing pr. måned (valgfri)</label>
+          <input type="number" min="0" class="form-control" id="savings" placeholder="fx 500">
+        </div>
+
+          <div class="mb-3">
+              <label for="age" class="form-label">Alder</label>
+              <input type="number" min="15" max="80" class="form-control" id="age" placeholder="fx 22">
+          </div>
+
+          <div class="mb-3">
+              <label for="gender" class="form-label">Køn</label>
+              <select class="form-control" id="gender">
+                  <option value="">Vælg (valgfrit)</option>
+                  <option value="M">Mand</option>
+                  <option value="K">Kvinde</option>
+                  <option value="X">Andet / vil ikke oplyse</option>
+              </select>
+          </div>
+
+        <div class="mb-3">
+          <label for="studyLine" class="form-label">Studieretning (valgfri)</label>
+          <input type="text" class="form-control" id="studyLine" placeholder="fx HA Almen på CBS">
+        </div>
+
+        <div class="mb-3">
+          <label for="comment" class="form-label">Ekstra info</label>
+          <textarea class="form-control" id="comment" rows="3"
+                    placeholder="fx Bor i København, lidt SU-lån, går til fodbold og vil stadig have råd til at gå i byen."></textarea>
+        </div>
+
+        <button id="submitBtn" class="btn btn-dark">Få budget-tips</button>
+        <button type="button" id="resetBtn" class="btn btn-outline-secondary ms-2">Ryd</button>
+        <div id="spinner" class="spinner-border text-secondary ms-3 d-none" role="status">
+          <span class="visually-hidden">Henter svar...</span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title mb-3">AI-svar</h5>
+            <!-- AI-SVAR OPDELT I 3 BOKSE -->
+            <div id="ai-box-1" class="card mb-3 d-none">
+                <div class="card-body">
+                    <h6 class="fw-bold">1) Budgetforslag</h6>
+                    <pre id="ai-part-1" class="mb-0" style="white-space: pre-wrap;"></pre>
+                </div>
+            </div>
+
+            <div id="ai-box-2" class="card mb-3 d-none">
+                <div class="card-body">
+                    <h6 class="fw-bold">2) Sparetips</h6>
+                    <pre id="ai-part-2" class="mb-0" style="white-space: pre-wrap;"></pre>
+                </div>
+            </div>
+
+            <div id="ai-box-3" class="card mb-3 d-none">
+                <div class="card-body">
+                    <h6 class="fw-bold">3) Opsummering</h6>
+                    <pre id="ai-part-3" class="mb-0" style="white-space: pre-wrap;"></pre>
+                </div>
+            </div>
+
+            <!-- Kort AI-status -->
+            <pre id="result" class="mb-3" style="white-space: pre-wrap;">
+Ingen svar endnu. Udfyld felterne og tryk "Få budget-tips".
+    </pre>
+
+            <!-- Statistik-boks -->
+            <div id="stats-box" class="alert alert-info mt-3 d-none"></div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal til at vise hele AI-svaret -->
+<div class="modal fade" id="aiAnswerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detaljeret AI-svar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Luk"></button>
+            </div>
+            <div class="modal-body">
+                <pre id="aiAnswerModalBody" style="white-space: pre-wrap; margin: 0;"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
