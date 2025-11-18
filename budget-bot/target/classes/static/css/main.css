@@ -1,0 +1,171 @@
+/* ---------- Grundfarver (enkelt og fladt) ---------- */
+:root {
+    --bg: #0d1117;
+    --card-bg: #161b22;
+    --text-main: #e6e6e6;
+    --text-muted: #9ca3af;
+    --accent: #22c55e; /* grøn */
+    --border: #2a2f37;
+}
+
+/* ---------- Body ---------- */
+body {
+    margin: 0;
+    background-color: var(--bg);
+    font-family: system-ui, sans-serif;
+    color: var(--text-main);
+}
+
+/* ---------- Container ---------- */
+.container {
+    max-width: 900px;
+}
+
+/* ---------- Overskrifter ---------- */
+h2 {
+    font-weight: 600;
+    margin: 0;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* ---------- Cards (simple, ingen fancy effekter) ---------- */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.card-body {
+    padding: 1.4rem;
+}
+
+.card-title {
+    color: var(--accent);
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ---------- Formular ---------- */
+.form-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.form-control,
+textarea.form-control {
+    background-color: #0f141a;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-main);
+    padding: 0.55rem;
+}
+
+.form-control::placeholder {
+    color: #6b7280;
+}
+
+/* ---------- Knapper ---------- */
+.btn {
+    border-radius: 8px;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+}
+
+/* Grøn primær knap */
+.btn-dark {
+    background-color: var(--accent);
+    color: black;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #1faa4f;
+}
+
+/* Sekundær knap */
+.btn-outline-secondary {
+    border: 1px solid var(--border);
+    color: var(--text-main);
+}
+
+.btn-outline-secondary:hover {
+    background-color: #202630;
+}
+
+/* ---------- Spinner ---------- */
+.spinner-border {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* ---------- Pre (AI-svar) ---------- */
+pre {
+    background-color: #0f141a;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+}
+
+/* ---------- Statistik-boks ---------- */
+#stats-box {
+    background-color: #1f2937;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-main);
+}
+
+/* ---------- AI-bokse ---------- */
+#ai-box-1, #ai-box-2, #ai-box-3 {
+    background-color: #1a1f26;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+#ai-box-1 pre,
+#ai-box-2 pre,
+#ai-box-3 pre {
+    color: var(--text-main);
+}
+
+/* ---------- Admin tabel ---------- */
+.table {
+    color: var(--text-main);
+}
+
+.table td,
+.table th {
+    border-color: var(--border);
+}
+
+/* ---------- Modal ---------- */
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border-radius: 10px;
+}
+
+.income-scale {
+    position: relative;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 4px;
+}
+
+.income-scale__marker {
+    position: absolute;
+    top: -4px;
+    width: 2px;
+    height: 18px;
+    background: black;
+}
+
+.income-scale__legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}

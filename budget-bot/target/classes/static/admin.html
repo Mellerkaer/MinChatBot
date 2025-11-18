@@ -1,0 +1,108 @@
+<!-- html -->
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin – Studie-budget assistent</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+    <script defer src="js/admin.js"></script>
+</head>
+<body>
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h2 class="mb-1">Admin – Studie-budget assistent</h2>
+            <p class="text-muted mb-0">
+                Login for at se de seneste forespørgsler til AI’en.
+            </p>
+        </div>
+        <a href="index.html" class="btn btn-outline-secondary">Tilbage</a>
+    </div>
+
+    <!-- Login-kort -->
+    <div class="card shadow-sm mb-4" id="login-card">
+        <div class="card-body">
+            <h5 class="card-title mb-3">Admin login</h5>
+            <form id="admin-login-form" class="row gy-3">
+                <div class="col-md-6 col-lg-4">
+                    <label for="adminPassword" class="form-label">Adgangskode</label>
+                    <input type="password" class="form-control" id="adminPassword"
+                           placeholder="Indtast admin-kode" required>
+                    <div class="invalid-feedback d-none" id="login-error">Forkert kode. Prøv igen.</div>
+                </div>
+                <div class="col-12 mt-2">
+                    <button type="submit" class="btn btn-dark">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin-indhold (skjult indtil login) -->
+    <div id="admin-content" class="d-none">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0">Seneste forespørgsler</h5>
+                    <div>
+                        <button id="refreshBtn" class="btn btn-outline-secondary btn-sm me-2">Opdater</button>
+                        <button id="logoutBtn" class="btn btn-outline-secondary btn-sm">Log ud</button>
+                    </div>
+                </div>
+
+                <div id="admin-spinner" class="spinner-border text-secondary mb-3 d-none" role="status">
+                    <span class="visually-hidden">Henter data...</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm mb-0">
+                        <thead>
+                        <tr>
+                            <th>Dato</th>
+                            <th>Indkomst</th>
+                            <th>Husleje</th>
+                            <th>Faste udgifter</th>
+                            <th>Opsparing</th>
+                            <th>Studieretning</th>
+                            <th>Kommentar</th>
+                            <th>AI-svar</th>
+                        </tr>
+                        </thead>
+                        <tbody id="admin-table-body">
+                        <tr>
+                            <td colspan="8" class="text-muted">
+                                Ingen data endnu. Log ind og tryk “Opdater”.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal til AI-svar -->
+<div class="modal fade" id="aiAnswerModal" tabindex="-1" aria-labelledby="aiAnswerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aiAnswerModalLabel">AI-svar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Luk"></button>
+            </div>
+            <div class="modal-body">
+                <pre id="aiAnswerModalBody" style="white-space: pre-wrap; margin: 0;"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
